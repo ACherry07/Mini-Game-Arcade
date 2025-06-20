@@ -76,13 +76,13 @@ class Player{
                     break;
                 }
             }
-            cout << "initial best" << best.first << " " << best.second << endl;
+            //cout << "initial best" << best.first << " " << best.second << endl;
             for (int i = 0; i < lists.size(); ++i) {
                 const auto& line = lists[i];
                 if (count(line.begin(), line.end(), self) == 2 &&
                     count(line.begin(), line.end(), opponent) == 0) {
                     int x = find(line.begin(), line.end(), ' ') - line.begin();
-                    cout << "case 1:" << x << endl;
+                    //cout << "case 1:" << x << endl;
                     if (i < 3)
                         best = {i, x}; // row
                     else if (i < 6)
@@ -95,7 +95,7 @@ class Player{
                 } else if (count(line.begin(), line.end(), opponent) == 2 &&
                         count(line.begin(), line.end(), self) == 0) {
                     int x = find(line.begin(), line.end(), ' ') - line.begin();
-                    cout << "case 2:" << x << endl;
+                    //cout << "case 2:" << x << endl;
                     if (i < 3)
                         best = {i, x};
                     else if (i < 6)
@@ -106,10 +106,10 @@ class Player{
                         best = {x, 2 - x};
                 }
             }
-            cout << best.first << " " << best.second << " before random choice" << endl;
+            //cout << best.first << " " << best.second << " before random choice" << endl;
 
             auto random_choice = [&](vector<pair<int, int>>& vec) {
-                cout << "Random" << endl;
+                //cout << "Random" << endl;
                 while (!vec.empty()) {
                     long int t = static_cast<long int>(time(NULL));
                     long int idx = t%vec.size();
@@ -125,13 +125,13 @@ class Player{
                 }
             };
             long int t = static_cast<long int> (time(NULL));
-            cout << t << endl;
+            //cout << t << endl;
             if (level == 0 && 1+t%10 > 1) random_choice(order);
             if (level == 1 && 1+t%10 > 3) random_choice(order);
             if (level == 2 && 1+t%20 > 10) random_choice(order);
             if (level == 3 && 1+t%40 > 30) random_choice(order);
             if (level == 4 && 1+t%100 > 99) random_choice(order);
-            cout << best.first << " " << best.second << endl;
+            //cout << best.first << " " << best.second << endl;
             return best;
         }
 
@@ -190,7 +190,7 @@ class TicTacToe{
         void play(){
             char currentplayer = 'X';
             while(true){
-                //cout << "\033c\033[H";
+                cout << "\033c\033[H";
                 displayBoard();
                 cout << "Player " << currentplayer << " ";
                 auto[row,col] = players[currentplayer].getMove(board, level);

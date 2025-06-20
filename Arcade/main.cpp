@@ -9,8 +9,10 @@ int main() {
     db.connect();
     Homepage homepage(db);
     std::string currentuser = homepage.show();
-    Gamepage gamepage(currentuser, db);
-    gamepage.show();
+    if(currentuser != ""){
+        Gamepage gamepage(currentuser, db);
+        gamepage.show();
+    }
     cout << "Thank you!" << endl;
     return 0;
 }

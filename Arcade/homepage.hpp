@@ -21,7 +21,7 @@
 class Homepage {
 private:
     MySQLConnector& db;
-    std::string currentuser;
+    std::string currentuser = "";
     std::string getText(std::string s);
     bool login();
     bool signup();

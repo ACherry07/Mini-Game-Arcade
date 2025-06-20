@@ -1,7 +1,7 @@
 #include "gamepage.hpp"
 #include "snake.hpp"
 #include "sudoku.hpp"
-#include "othello1.hpp"
+#include "othello.hpp"
 #include "tictactoe.hpp"
 #include "stats.hpp"
 Gamepage::Gamepage(const std::string uname, MySQLConnector& database):username(uname), db(database){}
@@ -16,25 +16,29 @@ bool Gamepage::show(){
         std::cout << "4. Tic Tac Toe" << std::endl;
         std::cout << "5. Get Stats" << std::endl;
         std::cout << "6. Logout" << std::endl;
-        int choice = 0;
+        string choice = "0";
         std::cin >> choice;
-        if(choice == 1){
+        if(choice == "1"){
             Snake::runSnake(username, db);
         }
-        else if(choice == 2){
+        else if(choice == "2"){
             Sudoku::runSudoku();
         }
-        else if(choice == 3){
+        else if(choice == "3"){
             Othello::runOthello(username,db);
         }
-        else if(choice == 4){
+        else if(choice == "4"){
             TicTacToe::runTicTacToe(username, db);
         }
-        else if(choice == 5){
+        else if(choice == "5"){
             Stats::runStats(username,db);
         }
-        else{
+        else if(choice == "6"){
             break;
+        }
+        else{
+            cout << "Invalid input. Please Try Again!" << endl;
+            continue;
         }
     }
     return true;
